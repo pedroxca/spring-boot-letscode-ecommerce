@@ -1,4 +1,4 @@
-package br.letscode.ecommerce.service.Impl;
+package br.letscode.ecommerce.service.implementation;
 
 import java.time.LocalDateTime;
 
@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import br.letscode.ecommerce.models.HelloWorld;
 import br.letscode.ecommerce.service.HelloWorldService;
-
 
 @Service
 public class HelloWorldServiceImpl implements HelloWorldService {
@@ -24,6 +23,7 @@ public class HelloWorldServiceImpl implements HelloWorldService {
   @Override
   public HelloWorld helloWorldTime(String user) {
     LocalDateTime now = LocalDateTime.now();
-    return new HelloWorld("Hello " + user + "!" + " Agora são: " + now.getHour() + ":" + now.getMinute() + ", não se esqueça!");
+    return new HelloWorld(
+        "Hello " + user + "!" + " Agora são: " + now.getHour() + ":" + now.getMinute() + ", não se esqueça!");
   }
 }
