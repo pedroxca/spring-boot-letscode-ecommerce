@@ -1,5 +1,7 @@
 package br.letscode.ecommerce.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,28 +10,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.letscode.ecommerce.models.HelloWorld;
-import br.letscode.ecommerce.service.HelloWorldService;
+import br.letscode.ecommerce.models.Message;
+import br.letscode.ecommerce.service.HelloService;
 
 @RestController
 @RequestMapping("/hello")
-public class HelloWorldController {
+public class HelloController {
 
   @Autowired
-  HelloWorldService helloWorldService;
+  HelloService helloWorldService;
+
+  Logger log = LoggerFactory.getLogger(HelloController.class);
 
   @RequestMapping(method = RequestMethod.GET)
-  public ResponseEntity<HelloWorld> helloWorld() {
+  public ResponseEntity<Message> helloWorld() {
+    log.error("Inserção feita com sucesso");
     return ResponseEntity.status(HttpStatus.OK).body(helloWorldService.helloWorld());
   }
 
   @RequestMapping(method = RequestMethod.GET, path = "/{user}")
-  public ResponseEntity<HelloWorld> helloWorldUser(@PathVariable String user) {
-    return ResponseEntity.status(HttpStatus.OK).body(helloWorldService.helloWorld(user));
+  public ResponseEntity<Message> helloUser(@PathVariable String user) {
+    return ResponseEntity.status(HttpStatus.OK).body(helloWorldService.helloUser(user));
   }
 
   @RequestMapping(method = RequestMethod.GET, path = "/{user}/horario")
-  public ResponseEntity<HelloWorld> helloWorldUserTime(@PathVariable String user) {
-    return ResponseEntity.status(HttpStatus.OK).body(helloWorldService.helloWorldTime(user));
+  public ResponseEntity<Message> helloUserTime(@PathVariable String user) {
+    return ResponseEntity.status(HttpStatus.OK).body(helloWorldService.helloUserTime(user));
   }
 }
