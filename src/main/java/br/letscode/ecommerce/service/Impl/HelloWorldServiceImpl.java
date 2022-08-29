@@ -24,6 +24,6 @@ public class HelloWorldServiceImpl implements HelloWorldService {
   @Override
   public HelloWorld helloWorldTime(String user) {
     LocalDateTime now = LocalDateTime.now();
-    return new HelloWorld("Hello " + user + "!" + " Agora são: " + now.getHour() + ":" + now.getMinute());
+    return new HelloWorld("Hello " + user + "!" + " Agora são: " + now.getHour() + ":" + now.getMinute() + ", não se esqueça!");
   }
 }
