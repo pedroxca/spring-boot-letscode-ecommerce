@@ -1,5 +1,7 @@
 package br.letscode.ecommerce.dto;
 
+import br.letscode.ecommerce.models.Cpf;
+
 public class ClienteDto {
   private String nome;
   private String sobrenome;
@@ -44,6 +46,6 @@ public class ClienteDto {
   }
 
   public void setCpf(String cpf) {
-    this.cpf = cpf;
+    this.cpf = Cpf.createCPF(cpf);
   }
 }

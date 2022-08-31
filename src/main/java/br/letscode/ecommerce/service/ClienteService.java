@@ -4,13 +4,14 @@ import java.util.List;
 
 import br.letscode.ecommerce.dto.ClienteDto;
 import br.letscode.ecommerce.entity.Cliente;
+import br.letscode.ecommerce.models.Message;
 
 public interface ClienteService {
   public List<Cliente> getAllClients();
 
-  public boolean novoCliente(ClienteDto cliente);
+  public Message novoCliente(ClienteDto cliente);
 
-  public boolean atualizarCliente(ClienteDto clienteDto, Long id);
+  public Message atualizarCliente(ClienteDto clienteDto, Long id);
 
-  public boolean removerCliente(long id);
+  public Message removerCliente(long id);
 }

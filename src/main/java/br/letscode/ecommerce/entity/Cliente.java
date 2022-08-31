@@ -94,4 +94,11 @@ public class Cliente {
     this.sexo = sexo;
   }
 
+  @Override
+  public String toString() {
+    // Long id, String nome, String sobrenome, String email, String sexo, String cpf
+    return String.format("{id=%s, nome=%s, sobrenome=%s, email=%s, sexo=%s, cpf=%s}", id, nome, sobrenome, email, sexo,
+        cpf);
+
+  }
 }

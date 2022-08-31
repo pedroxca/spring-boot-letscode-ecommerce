@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.letscode.ecommerce.dto.ClienteDto;
 import br.letscode.ecommerce.entity.Cliente;
+import br.letscode.ecommerce.models.Message;
 import br.letscode.ecommerce.service.ClienteService;
 
 @RestController
@@ -28,23 +29,21 @@ public class ClienteController {
 
   @RequestMapping(method = RequestMethod.GET)
   public ResponseEntity<List<Cliente>> getClients() {
-    log.error(clienteService.getAllClients().toString());
     return ResponseEntity.status(HttpStatus.OK).body(clienteService.getAllClients());
   }
 
   @RequestMapping(method = RequestMethod.POST)
-  public ResponseEntity<Boolean> createClient(@RequestBody ClienteDto clienteDto) {
+  public ResponseEntity<Message> createClient(@RequestBody ClienteDto clienteDto) {
     return ResponseEntity.status(HttpStatus.OK).body(clienteService.novoCliente(clienteDto));
   }
 
   @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
-  public ResponseEntity<Boolean> deleteClient(@PathVariable Long id) {
+  public ResponseEntity<Message> deleteClient(@PathVariable Long id) {
     return ResponseEntity.status(HttpStatus.OK).body(clienteService.removerCliente(id));
   }
 
   @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
-  public ResponseEntity<Boolean> updateClient(@RequestBody ClienteDto cliente, @PathVariable Long id) {
+  public ResponseEntity<Message> updateClient(@RequestBody ClienteDto cliente, @PathVariable Long id) {
     return ResponseEntity.status(HttpStatus.OK).body(clienteService.atualizarCliente(cliente, id));
   }
-
 }

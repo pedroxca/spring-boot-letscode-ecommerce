@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import br.letscode.ecommerce.dao.ClienteDao;
 import br.letscode.ecommerce.dto.ClienteDto;
 import br.letscode.ecommerce.entity.Cliente;
+import br.letscode.ecommerce.exceptions.EcommerceException;
+import br.letscode.ecommerce.models.Message;
 import br.letscode.ecommerce.service.ClienteService;
 
 @Service
@@ -23,36 +25,40 @@ public class ClienteServiceImpl implements ClienteService {
   }
 
   @Override
-  public boolean novoCliente(ClienteDto clienteDto) {
+  public Message novoCliente(ClienteDto clienteDto) {
     try {
       Cliente cliente = new Cliente(clienteDto.getNome(), clienteDto.getSobrenome(), clienteDto.getEmail(),
           clienteDto.getSexo(), clienteDto.getCpf());
       clienteDao.save(cliente);
-      return true;
+      return new Message("Cliente: " + cliente + " salvo");
     } catch (Exception e) {
-      return false;
+      throw new EcommerceException(e.getMessage(), 400);
     }
   }
-
+  
   @Override
-  public boolean atualizarCliente(ClienteDto clienteDto, Long id) {
+  public Message atualizarCliente(ClienteDto clienteDto, Long id) {
     try {
-      Cliente cliente = new Cliente(id, clienteDto.getNome(), clienteDto.getSobrenome(), clienteDto.getEmail(),
-          clienteDto.getSexo(), clienteDto.getCpf());
+      Optional<Cliente> clienteFoundById = clienteDao.findById(id);
+      if(clienteFoundById.isEmpty()){
+        throw new EcommerceException("Cliente não existe", 404);
+      }
+      Cliente cliente = new Cliente(clienteFoundById.get().getId(), clienteDto.getNome(), clienteDto.getSobrenome(), clienteDto.getEmail(),
+      clienteDto.getSexo(), clienteDto.getCpf());
       clienteDao.save(cliente);
-      return true;
+      return new Message("Cliente: " + cliente +" salvo com sucesso");
     } catch (Exception e) {
-      return false;
+      throw new EcommerceException(e.getMessage(), 400);
     }
   }
-
+  
   @Override
-  public boolean removerCliente(long id) {
+  public Message removerCliente(long id) {
     try {
       clienteDao.deleteById(id);
-      return true;
+      return new Message("Cliente: " + clienteDao.findById(id) +" deletado com sucesso");
     } catch (Exception e) {
-      return false;
+      throw new EcommerceException(e.getMessage(), 404);
     }
   }
 
