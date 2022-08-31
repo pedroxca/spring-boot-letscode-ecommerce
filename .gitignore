@@ -34,4 +34,4 @@ build/
 
 ### PEDIDOS ###
 
-logs/*.log
+/logs

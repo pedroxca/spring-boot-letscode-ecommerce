@@ -14,4 +14,5 @@ public interface ClienteService {
   public Message atualizarCliente(ClienteDto clienteDto, Long id);
 
   public Message removerCliente(long id);
+  public Cliente findByCpf(String cpf);
 }

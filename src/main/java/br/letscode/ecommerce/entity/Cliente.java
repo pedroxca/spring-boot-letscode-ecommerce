@@ -5,25 +5,27 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "cliente")
+@NamedNativeQuery(name = "Cliente.findByCPF", query = "SELECT * FROM cliente WHERE cpf = ?1", resultClass = Cliente.class)
 public class Cliente {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(name = "nome")
+  @Column(name = "nome", nullable = false)
   private String nome;
-  @Column(name = "sobrenome")
+  @Column(name = "sobrenome", nullable = false)
   private String sobrenome;
-  @Column(name = "email")
+  @Column(name = "email", nullable = false)
   private String email;
-  @Column(name = "sexo")
+  @Column(name = "sexo", nullable = false)
   private String sexo;
-  @Column(name = "cpf", unique = true)
+  @Column(name = "cpf", unique = true, nullable = false)
   private String cpf;
 
   public Cliente(Long id, String nome, String sobrenome, String email, String sexo, String cpf) {

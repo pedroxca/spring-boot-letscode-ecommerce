@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,22 +28,27 @@ public class ClienteController {
 
   Logger log = LoggerFactory.getLogger(ClienteController.class);
 
-  @RequestMapping(method = RequestMethod.GET)
+  @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<List<Cliente>> getClients() {
     return ResponseEntity.status(HttpStatus.OK).body(clienteService.getAllClients());
   }
 
-  @RequestMapping(method = RequestMethod.POST)
+  @RequestMapping(method = RequestMethod.GET, path = "/{cpf}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<Cliente> getClientByCPF(@PathVariable String cpf) {
+    return ResponseEntity.status(HttpStatus.OK).body(clienteService.findByCpf(cpf));
+  }
+
+  @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Message> createClient(@RequestBody ClienteDto clienteDto) {
     return ResponseEntity.status(HttpStatus.OK).body(clienteService.novoCliente(clienteDto));
   }
 
-  @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+  @RequestMapping(path = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Message> deleteClient(@PathVariable Long id) {
     return ResponseEntity.status(HttpStatus.OK).body(clienteService.removerCliente(id));
   }
 
-  @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
+  @RequestMapping(path = "/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Message> updateClient(@RequestBody ClienteDto cliente, @PathVariable Long id) {
     return ResponseEntity.status(HttpStatus.OK).body(clienteService.atualizarCliente(cliente, id));
   }

@@ -35,31 +35,39 @@ public class ClienteServiceImpl implements ClienteService {
       throw new EcommerceException(e.getMessage(), 400);
     }
   }
-  
+
   @Override
   public Message atualizarCliente(ClienteDto clienteDto, Long id) {
     try {
       Optional<Cliente> clienteFoundById = clienteDao.findById(id);
-      if(clienteFoundById.isEmpty()){
+      if (clienteFoundById.isEmpty()) {
         throw new EcommerceException("Cliente não existe", 404);
       }
-      Cliente cliente = new Cliente(clienteFoundById.get().getId(), clienteDto.getNome(), clienteDto.getSobrenome(), clienteDto.getEmail(),
-      clienteDto.getSexo(), clienteDto.getCpf());
+      Cliente cliente = new Cliente(clienteFoundById.get().getId(), clienteDto.getNome(), clienteDto.getSobrenome(),
+          clienteDto.getEmail(),
+          clienteDto.getSexo(), clienteDto.getCpf());
       clienteDao.save(cliente);
-      return new Message("Cliente: " + cliente +" salvo com sucesso");
+      return new Message("Cliente: " + cliente + " salvo com sucesso");
     } catch (Exception e) {
       throw new EcommerceException(e.getMessage(), 400);
     }
   }
-  
+
   @Override
   public Message removerCliente(long id) {
     try {
       clienteDao.deleteById(id);
-      return new Message("Cliente: " + clienteDao.findById(id) +" deletado com sucesso");
+      return new Message("Cliente: " + clienteDao.findById(id) + " deletado com sucesso");
     } catch (Exception e) {
       throw new EcommerceException(e.getMessage(), 404);
     }
   }
 
+  @Override
+  public Cliente findByCpf(String cpf) {
+    if (clienteDao.findByCpf(cpf).isEmpty()) {
+      throw new EcommerceException("Cliente não existe", 404);
+    }
+    return clienteDao.findByCpf(cpf).get();
+  }
 }
