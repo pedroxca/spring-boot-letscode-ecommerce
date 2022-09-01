@@ -4,33 +4,41 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "produto")
 public class Produto {
+
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  @Column(name = "name")
-  private String name;
-  @Column(name = "price", columnDefinition = "DECIMAL(4,2)")
-  private BigDecimal price;
 
-  @Column(name = "description")
-  private String description;
+  @Column(name = "nome", nullable = false)
+  private String nome;
+  @Column(name = "preco", nullable = false,columnDefinition = "DECIMAL(7,2)")
+  private BigDecimal preco = BigDecimal.valueOf(0L);
 
-  public Produto(Long id, String name, BigDecimal price, String description) {
+  @Column(name = "descricao", nullable = false)
+  private String descricao;
+
+  public Produto(Long id, String nome, String preco, String descricao) {
     this.id = id;
-    this.name = name;
-    this.price = price;
-    this.description = description;
+    this.nome = nome;
+    this.preco = new BigDecimal(preco);
+    this.descricao = descricao;
   }
 
-  public Produto(String name, BigDecimal price, String description) {
-    this.name = name;
-    this.price = price;
-    this.description = description;
+  public Produto(String nome, String preco, String descricao) {
+    this.nome = nome;
+    this.preco = new BigDecimal(preco);
+    this.descricao = descricao;
+  }
+
+  public Produto() {
   }
 
   public Long getId() {
@@ -41,28 +49,32 @@ public class Produto {
     this.id = id;
   }
 
-  public String getName() {
-    return name;
+  public String getNome() {
+    return nome;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setNome(String name) {
+    this.nome = name;
   }
 
-  public BigDecimal getPrice() {
-    return price;
+  public String getPreco() {
+    return preco.setScale(2).toString();
   }
 
-  public void setPrice(BigDecimal price) {
-    this.price = price;
+  public void setPreco(String price) {
+    this.preco = new BigDecimal(price);
   }
 
-  public String getDescription() {
-    return description;
+  public String getDescricao() {
+    return descricao;
   }
 
-  public void setDescription(String description) {
-    this.description = description;
+  public void setDescricao(String description) {
+    this.descricao = description;
+  }
+  @Override
+  public String toString() {
+    return String.format("{id=%s, nome=%s, descricao=%s, preco=%s}", id, nome, descricao, preco);
   }
 
 }
