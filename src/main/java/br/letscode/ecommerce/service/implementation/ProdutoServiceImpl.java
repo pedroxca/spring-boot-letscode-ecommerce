@@ -1,6 +1,5 @@
 package br.letscode.ecommerce.service.implementation;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,9 +20,9 @@ public class ProdutoServiceImpl implements ProdutoService {
   ProdutoDao produtoDao;
 
   @Override
-  public Message createProduto(ProdutoDto produto) {
-    Produto p = new Produto(produto.getNome(), produto.getPreco(),produto.getDescricao());
-    produtoDao.save(p);
+  public Message createProduto(ProdutoDto produtoDto) {
+    Produto produto = new Produto(produtoDto.getNome(), produtoDto.getPreco(),produtoDto.getDescricao());
+    produtoDao.save(produto);
     return new Message("Novo produto salvo com sucesso");
   }
 

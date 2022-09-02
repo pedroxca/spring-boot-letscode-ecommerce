@@ -1,0 +1,1 @@
+al mvnw clean compile spring-boot:run

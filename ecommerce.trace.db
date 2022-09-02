@@ -1,0 +1,6 @@
+2022-09-02 14:53:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "PRECO DECIMAL(7, 2)": "6262262626262.00 (15)"; SQL statement:
+insert into produto (id, descricao, nome, preco) values (default, ?, ?, ?) [22001-200]
+2022-09-02 14:53:59 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "PRECO DECIMAL(7, 2)": "626226262.00 (11)"; SQL statement:
+insert into produto (id, descricao, nome, preco) values (default, ?, ?, ?) [22001-200]

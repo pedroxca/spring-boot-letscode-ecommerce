@@ -20,7 +20,7 @@ import br.letscode.ecommerce.models.Message;
 import br.letscode.ecommerce.service.ClienteService;
 
 @RestController
-@RequestMapping("/api/v1/cliente")
+@RequestMapping(path = "/api/v1/cliente", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ClienteController {
 
   @Autowired
@@ -28,27 +28,27 @@ public class ClienteController {
 
   Logger log = LoggerFactory.getLogger(ClienteController.class);
 
-  @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(method = RequestMethod.GET)
   public ResponseEntity<List<Cliente>> getClients() {
     return ResponseEntity.status(HttpStatus.OK).body(clienteService.getAllClients());
   }
 
-  @RequestMapping(method = RequestMethod.GET, path = "/{cpf}", produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(method = RequestMethod.GET, path = "/{cpf}")
   public ResponseEntity<Cliente> getClientByCPF(@PathVariable String cpf) {
     return ResponseEntity.status(HttpStatus.OK).body(clienteService.findByCpf(cpf));
   }
 
-  @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(method = RequestMethod.POST)
   public ResponseEntity<Message> createClient(@RequestBody ClienteDto clienteDto) {
-    return ResponseEntity.status(HttpStatus.OK).body(clienteService.novoCliente(clienteDto));
+    return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.novoCliente(clienteDto));
   }
 
-  @RequestMapping(path = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
   public ResponseEntity<Message> deleteClient(@PathVariable Long id) {
     return ResponseEntity.status(HttpStatus.OK).body(clienteService.removerCliente(id));
   }
 
-  @RequestMapping(path = "/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
   public ResponseEntity<Message> updateClient(@RequestBody ClienteDto cliente, @PathVariable Long id) {
     return ResponseEntity.status(HttpStatus.OK).body(clienteService.atualizarCliente(cliente, id));
   }

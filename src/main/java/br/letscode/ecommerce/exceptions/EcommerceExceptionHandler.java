@@ -10,8 +10,7 @@ import br.letscode.ecommerce.errors.ErrorMessage;
 public class EcommerceExceptionHandler {
   @ExceptionHandler(EcommerceException.class)
   public ResponseEntity<ErrorMessage> toResponse(EcommerceException ex) {
-    ErrorMessage errorMessage = new ErrorMessage(ex.getCode(),
-        ex.getClass().getSimpleName() + ": " + ex.getMessage());
-    return ResponseEntity.status(ex.getCode()).body(errorMessage);
+    ErrorMessage errorMessage = new ErrorMessage(ex.getStatus(), ex.getMessage(), ex.getClass().getSimpleName());
+    return ResponseEntity.status(ex.getStatus()).body(errorMessage);
   }
 }

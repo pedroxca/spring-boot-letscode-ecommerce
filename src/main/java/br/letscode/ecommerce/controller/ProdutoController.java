@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +18,7 @@ import br.letscode.ecommerce.models.Message;
 import br.letscode.ecommerce.service.ProdutoService;
 
 @RestController
-@RequestMapping("/api/v1/produto")
+@RequestMapping(path = "/api/v1/produto", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ProdutoController {
   @Autowired
   ProdutoService produtoService;

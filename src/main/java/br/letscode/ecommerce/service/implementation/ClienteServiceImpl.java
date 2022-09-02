@@ -26,41 +26,29 @@ public class ClienteServiceImpl implements ClienteService {
 
   @Override
   public Message novoCliente(ClienteDto clienteDto) {
-    try {
-      Cliente cliente = new Cliente(clienteDto.getNome(), clienteDto.getSobrenome(), clienteDto.getEmail(),
-          clienteDto.getSexo(), clienteDto.getCpf());
-      clienteDao.save(cliente);
-      return new Message("Cliente: " + cliente + " salvo");
-    } catch (Exception e) {
-      throw new EcommerceException(e.getMessage(), 400);
-    }
+    Cliente cliente = new Cliente(clienteDto.getNome(), clienteDto.getSobrenome(), clienteDto.getEmail(),
+        clienteDto.getSexo(), clienteDto.getCpf());
+    clienteDao.save(cliente);
+    return new Message("Cliente: " + cliente + " salvo");
   }
 
   @Override
   public Message atualizarCliente(ClienteDto clienteDto, Long id) {
-    try {
-      Optional<Cliente> clienteFoundById = clienteDao.findById(id);
-      if (clienteFoundById.isEmpty()) {
-        throw new EcommerceException("Cliente não existe", 404);
-      }
-      Cliente cliente = new Cliente(clienteFoundById.get().getId(), clienteDto.getNome(), clienteDto.getSobrenome(),
-          clienteDto.getEmail(),
-          clienteDto.getSexo(), clienteDto.getCpf());
-      clienteDao.save(cliente);
-      return new Message("Cliente: " + cliente + " salvo com sucesso");
-    } catch (Exception e) {
-      throw new EcommerceException(e.getMessage(), 400);
+    Optional<Cliente> clienteFoundById = clienteDao.findById(id);
+    if (clienteFoundById.isEmpty()) {
+      throw new EcommerceException("Cliente não existe", 404);
     }
+    Cliente cliente = new Cliente(clienteFoundById.get().getId(), clienteDto.getNome(), clienteDto.getSobrenome(),
+        clienteDto.getEmail(),
+        clienteDto.getSexo(), clienteDto.getCpf());
+    clienteDao.save(cliente);
+    return new Message("Cliente: " + cliente + " salvo com sucesso");
   }
 
   @Override
   public Message removerCliente(long id) {
-    try {
-      clienteDao.deleteById(id);
-      return new Message("Cliente: " + clienteDao.findById(id) + " deletado com sucesso");
-    } catch (Exception e) {
-      throw new EcommerceException(e.getMessage(), 404);
-    }
+    clienteDao.deleteById(id);
+    return new Message("Cliente: " + clienteDao.findById(id) + " deletado com sucesso");
   }
 
   @Override

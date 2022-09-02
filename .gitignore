@@ -35,3 +35,6 @@ build/
 ### PEDIDOS ###
 
 /logs
+
+ecommerce.mv.db
+ecommerce.target.db

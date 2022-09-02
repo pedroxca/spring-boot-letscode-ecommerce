@@ -1,18 +1,12 @@
 package br.letscode.ecommerce.errors;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-@NoArgsConstructor
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
 public class ErrorMessage {
-  private int errorCode;
-  private String errorMsg;
-
-  public ErrorMessage(int errorCode, String errorMsg) {
-    this.errorCode = errorCode;
-    this.errorMsg = errorMsg;
-  }
+  private int status;
+  private String message;
+  private String type;
 }
