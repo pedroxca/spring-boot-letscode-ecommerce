@@ -36,5 +36,5 @@ build/
 
 /logs
 
-ecommerce.mv.db
-ecommerce.target.db
+./ecommerce.mv.db
+./ecommerce.trace.db
