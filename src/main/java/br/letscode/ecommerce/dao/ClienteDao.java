@@ -10,4 +10,5 @@ import br.letscode.ecommerce.entity.Cliente;
 @Repository
 public interface ClienteDao extends JpaRepository<Cliente, Long> {
   public Optional<Cliente> findByCpf(String cpf);
+  public Cliente findByEmail(String email);
 }

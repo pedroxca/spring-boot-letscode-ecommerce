@@ -13,7 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import br.letscode.ecommerce.controller.ClienteController;
+import br.letscode.ecommerce.controller.api.v1.ClienteController;
 import br.letscode.ecommerce.entity.Cliente;
 
 @SpringBootTest

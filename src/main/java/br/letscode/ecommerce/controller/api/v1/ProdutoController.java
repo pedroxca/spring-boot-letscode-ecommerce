@@ -1,8 +1,9 @@
-package br.letscode.ecommerce.controller;
+package br.letscode.ecommerce.controller.api.v1;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Description;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,10 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-
-
-import br.letscode.ecommerce.dto.ProdutoDto;
 
 import br.letscode.ecommerce.dto.ProdutoDto;
 import br.letscode.ecommerce.entity.Produto;
@@ -27,6 +24,8 @@ public class ProdutoController {
   @Autowired
   ProdutoService produtoService;
 
+  
+  @Description(value = "Criar um produto novo")
   @RequestMapping(method = RequestMethod.POST)
   public ResponseEntity<Message> createProduto(@RequestBody ProdutoDto produto) {
     return ResponseEntity.status(HttpStatus.CREATED).body(produtoService.createProduto(produto));

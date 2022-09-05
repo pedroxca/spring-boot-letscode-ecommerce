@@ -9,10 +9,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
 
 @NonNull
 @Entity
+@Getter
+@Setter
 @Table(name = "produto")
 public class Produto {
 
@@ -22,7 +26,7 @@ public class Produto {
 
   @Column(name = "nome", nullable = false)
   private String nome;
-  @Column(name = "preco", nullable = false,columnDefinition = "DECIMAL(7,2)")
+  @Column(name = "preco", nullable = false, columnDefinition = "DECIMAL(7,2)")
   private BigDecimal preco = BigDecimal.valueOf(0L);
 
   @Column(name = "descricao", nullable = false)
@@ -44,22 +48,6 @@ public class Produto {
   public Produto() {
   }
 
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getNome() {
-    return nome;
-  }
-
-  public void setNome(String name) {
-    this.nome = name;
-  }
-
   public String getPreco() {
     return preco.setScale(2).toString();
   }
@@ -68,13 +56,6 @@ public class Produto {
     this.preco = new BigDecimal(price);
   }
 
-  public String getDescricao() {
-    return descricao;
-  }
-
-  public void setDescricao(String description) {
-    this.descricao = description;
-  }
   @Override
   public String toString() {
     return String.format("{id=%s, nome=%s, descricao=%s, preco=%s}", id, nome, descricao, preco);

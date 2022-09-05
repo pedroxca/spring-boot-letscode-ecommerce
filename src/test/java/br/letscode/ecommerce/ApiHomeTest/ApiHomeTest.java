@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 
-import br.letscode.ecommerce.controller.ApiHomeController;
+import br.letscode.ecommerce.controller.api.v1.ApiHomeController;
 import br.letscode.ecommerce.models.Message;
 
 @SpringBootTest

@@ -1,4 +1,4 @@
-package br.letscode.ecommerce.controller;
+package br.letscode.ecommerce.controller.api.v1;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

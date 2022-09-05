@@ -9,7 +9,7 @@ import io.swagger.v3.oas.models.info.Info;
 public class SwaggerConfig {
 
   @Bean
-  public OpeanAPI springShopOpenAPI() {
+  public OpenAPI springShopOpenAPI() {
     return new OpenAPI()
         .info(new Info()
             .title("Eccommerce API")
