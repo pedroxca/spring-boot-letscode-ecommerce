@@ -3,7 +3,9 @@ package br.letscode.ecommerce.models;
 import java.util.regex.Pattern;
 
 import br.letscode.ecommerce.exceptions.InvalidCpfException;
+import lombok.NonNull;
 
+@NonNull
 public final class Cpf {
   private String cpfString;
   private static final String CPF_MATCHER_STRING = "^[0-9]{11}$";

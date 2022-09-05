@@ -8,6 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
+
+@NonNull
+@Getter
+@Setter
 @Entity
 @Table(name = "cliente")
 @NamedNativeQuery(name = "Cliente.findByCPF", query = "SELECT * FROM cliente WHERE cpf = ?1", resultClass = Cliente.class)
@@ -48,53 +55,7 @@ public class Cliente {
   public Cliente() {
   }
 
-  public String getCpf() {
-    return cpf;
-  }
 
-  public void setCpf(String cpf) {
-    this.cpf = cpf;
-  }
-
-  public String getNome() {
-    return nome;
-  }
-
-  public void setNome(String nome) {
-    this.nome = nome;
-  }
-
-  public String getSobreNome() {
-    return sobrenome;
-  }
-
-  public void setSobreNome(String sobreNome) {
-    this.sobrenome = sobreNome;
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public String getSexo() {
-    return sexo;
-  }
-
-  public void setSexo(String sexo) {
-    this.sexo = sexo;
-  }
 
   @Override
   public String toString() {

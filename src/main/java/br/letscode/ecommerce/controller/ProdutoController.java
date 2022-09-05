@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+
+
+import br.letscode.ecommerce.dto.ProdutoDto;
+
 import br.letscode.ecommerce.dto.ProdutoDto;
 import br.letscode.ecommerce.entity.Produto;
 import br.letscode.ecommerce.models.Message;
@@ -33,6 +37,7 @@ public class ProdutoController {
 
     return ResponseEntity.status(HttpStatus.OK).body(produtoService.findProdutoById(id));
   };
+
   @RequestMapping(method = RequestMethod.GET, path = "")
   public ResponseEntity<List<Produto>> getProdutos() {
 
