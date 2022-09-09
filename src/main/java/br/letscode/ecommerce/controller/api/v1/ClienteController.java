@@ -30,15 +30,21 @@ public class ClienteController {
 
   Logger log = LoggerFactory.getLogger(ClienteController.class);
 
+  /*
+   * Since this is not a social media, requesting for all clients and their data is not a good idea.
+  */
+  @PreAuthorize("hasAnyRole('ADMIN')")
   @RequestMapping(method = RequestMethod.GET)
   public ResponseEntity<List<Cliente>> getClients() {
     return ResponseEntity.status(HttpStatus.OK).body(clienteService.getAllClients());
   }
+  
   @RequestMapping(method = RequestMethod.GET, path = "/{id}")
   public ResponseEntity<Cliente> getClientByID(@PathVariable Long id) {
     return ResponseEntity.status(HttpStatus.OK).body(clienteService.findById(id));
   }
-
+  
+  @PreAuthorize("hasAnyRole('ADMIN')")
   @RequestMapping(method = RequestMethod.GET, path = "/cpf/{cpf}")
   public ResponseEntity<Cliente> getClientByCPF(@PathVariable String cpf) {
     return ResponseEntity.status(HttpStatus.OK).body(clienteService.findByCpf(cpf));
@@ -54,7 +60,7 @@ public class ClienteController {
   public ResponseEntity<Message> deleteClient(@PathVariable Long id) {
     return ResponseEntity.status(HttpStatus.OK).body(clienteService.removerCliente(id));
   }
-  
+
   @PreAuthorize("hasAnyRole('ADMIN')")
   @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
   public ResponseEntity<Message> updateClient(@RequestBody ClienteDtoSemSenha cliente, @PathVariable Long id) {

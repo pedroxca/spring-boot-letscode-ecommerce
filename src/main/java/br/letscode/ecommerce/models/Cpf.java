@@ -6,7 +6,7 @@ import br.letscode.ecommerce.exceptions.InvalidCpfException;
 import lombok.NonNull;
 
 @NonNull
-public final class Cpf {
+public final class Cpf{
   private String cpfString;
   private static final String CPF_MATCHER_STRING = "^[0-9]{11}$";
 
@@ -18,12 +18,7 @@ public final class Cpf {
   private String getCpfString() {
     return cpfString;
   }
-
-  private void setCpfString(String cpfString) {
-    validaCpf(cpfString);
-    this.cpfString = cpfString;
-  }
-
+  
   public static void validaCpf(String cpf) {
     if (!Pattern.matches(CPF_MATCHER_STRING, cpf)) {
       throw new InvalidCpfException("CPF invalido", 400);

@@ -11,7 +11,6 @@ import javax.persistence.NamedNativeQuery;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import br.letscode.ecommerce.models.PerfilEnum;
 import lombok.AllArgsConstructor;
@@ -24,10 +23,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "cliente")
+@Table(name = "user")
 @NoArgsConstructor
 @AllArgsConstructor
-@NamedNativeQuery(name = "Cliente.findByCPF", query = "SELECT * FROM cliente WHERE cpf = ?1", resultClass = Cliente.class)
+@NamedNativeQuery(name = "user.findByCPF", query = "SELECT * FROM user WHERE cpf = ?1", resultClass = Cliente.class)
 public class Cliente {
 
   @Id
@@ -67,7 +66,7 @@ public class Cliente {
     this.sexo = sexo;
     this.cpf = cpf;
     this.senha = senha;
-    this.perfilEnum = perfilEnum;
+    this.perfilEnum = PerfilEnum.valorDePerfilEnum(perfilEnum);
   }
 
   public Cliente(Long id, String nome, String sobreNome, String email, String sexo, String cpf) {

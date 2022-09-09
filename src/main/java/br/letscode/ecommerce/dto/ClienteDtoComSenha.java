@@ -29,8 +29,6 @@ public class ClienteDtoComSenha {
     this.perfilEnum = perfilEnum;
   }
 
-
-
   public void setCpf(String cpf) {
     this.cpf = Cpf.createCPF(cpf);
   }

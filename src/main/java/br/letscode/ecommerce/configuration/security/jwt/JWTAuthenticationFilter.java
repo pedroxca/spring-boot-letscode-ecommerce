@@ -29,7 +29,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     //Pagina de login customizada
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
-        setFilterProcessesUrl("/login");
+        setFilterProcessesUrl("/auth/login");
     }
 
     //Quando a pagina /login for acessada, a request sera trazida para aqui, afim de tentar autenticar o valor.
@@ -73,6 +73,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         response.getWriter().write(email + ": " +SecurityConstants.TOKEN_PREFIX +" "+ token);
         response.getWriter().flush();
+        
 
     }
 }

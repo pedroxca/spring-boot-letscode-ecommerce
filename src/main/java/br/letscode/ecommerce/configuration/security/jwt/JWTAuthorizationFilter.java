@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-//Classe para autorizacao (validar o JWT token)
+//Classe para autorizacao (validar o JWT token) 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
     //Indica que a classe eh de autorizacao (recebendo um AuthenticationManager)

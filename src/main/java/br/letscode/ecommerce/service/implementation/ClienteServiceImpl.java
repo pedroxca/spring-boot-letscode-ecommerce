@@ -52,7 +52,7 @@ public class ClienteServiceImpl implements ClienteService {
     }
     Cliente cliente = new Cliente(clienteFoundById.get().getId(), clienteDto.getNome(), clienteDto.getSobrenome(),
         clienteDto.getEmail(),
-        clienteDto.getSexo(), clienteDto.getCpf(), clienteFoundById.get().getSenha(), clienteDto.getPerfilEnum()  );
+        clienteDto.getSexo(), clienteDto.getCpf(), clienteFoundById.get().getSenha(), clienteDto.getPerfilEnum());
     clienteDao.save(cliente);
     return new Message("Cliente: " + cliente + " salvo com sucesso");
   }

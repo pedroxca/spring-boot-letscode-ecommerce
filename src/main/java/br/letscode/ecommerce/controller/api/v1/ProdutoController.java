@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Description;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +25,7 @@ public class ProdutoController {
   @Autowired
   ProdutoService produtoService;
 
-  
+  @PreAuthorize("hasAnyRole('ADMIN')")
   @Description(value = "Criar um produto novo")
   @RequestMapping(method = RequestMethod.POST)
   public ResponseEntity<Message> createProduto(@RequestBody ProdutoDto produto) {
@@ -33,7 +34,6 @@ public class ProdutoController {
 
   @RequestMapping(method = RequestMethod.GET, path = "/{id}")
   public ResponseEntity<Produto> getProdutoById(@PathVariable Long id) {
-
     return ResponseEntity.status(HttpStatus.OK).body(produtoService.findProdutoById(id));
   };
 
@@ -43,11 +43,13 @@ public class ProdutoController {
     return ResponseEntity.status(HttpStatus.OK).body(produtoService.findAllProdutos());
   };
 
+  @PreAuthorize("hasAnyRole('ADMIN')")
   @RequestMapping(method = RequestMethod.DELETE, path = "/{id}")
   public ResponseEntity<Message> deleteProdutoById(@PathVariable Long id) {
     return ResponseEntity.status(HttpStatus.OK).body(produtoService.deleteProduto(id));
   };
 
+  @PreAuthorize("hasAnyRole('ADMIN')")
   @RequestMapping(method = RequestMethod.PUT, path = "/{id}")
   public ResponseEntity<Message> updateProduto(@RequestBody ProdutoDto produto, @PathVariable Long id) {
     return ResponseEntity.status(HttpStatus.OK).body(produtoService.updateProduto(produto, id));

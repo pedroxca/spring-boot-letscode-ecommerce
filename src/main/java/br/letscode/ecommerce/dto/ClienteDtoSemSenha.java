@@ -1,7 +1,6 @@
 package br.letscode.ecommerce.dto;
 
 import br.letscode.ecommerce.models.Cpf;
-import br.letscode.ecommerce.models.PerfilEnum;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
