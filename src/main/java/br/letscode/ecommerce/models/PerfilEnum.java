@@ -20,6 +20,8 @@ public enum PerfilEnum {
   public static PerfilEnum valorDePerfilEnum(String perfil) {
     for (PerfilEnum perfilEnum : PerfilEnum.values()) {
       if (perfilEnum.toString().equals(perfil)) {
+        System.out.println(perfil);
+        System.out.println(perfilEnum.toString());
         return perfilEnum;
       }
     }

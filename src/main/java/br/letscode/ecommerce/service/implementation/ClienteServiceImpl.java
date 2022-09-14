@@ -47,6 +47,7 @@ public class ClienteServiceImpl implements ClienteService {
   @Override
   public Message atualizarCliente(ClienteDtoSemSenha clienteDto, Long id) {
     Optional<Cliente> clienteFoundById = clienteDao.findById(id);
+    System.out.println(clienteDto.getPerfilEnum());
     if (clienteFoundById.isEmpty()) {
       throw new EcommerceException("Cliente não existe", 404);
     }

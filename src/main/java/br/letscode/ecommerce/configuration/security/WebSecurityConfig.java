@@ -53,6 +53,7 @@ public class WebSecurityConfig {
                 // Requests para as URLs e metodos abaixo sao permitidas SEM AUTENTICACAO
                 .antMatchers(HttpMethod.POST, "/api/v1/cliente").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/v1/produto", "/api/v1/produto/{id}").permitAll()
+                .antMatchers("/api/v1/login").permitAll()
                 .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                 .antMatchers("/instances/**").permitAll()
                 .antMatchers("/actuator/**").permitAll()

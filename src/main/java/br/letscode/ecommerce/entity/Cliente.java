@@ -23,10 +23,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "user")
+@Table(name = "cliente")
 @NoArgsConstructor
 @AllArgsConstructor
-@NamedNativeQuery(name = "user.findByCPF", query = "SELECT * FROM user WHERE cpf = ?1", resultClass = Cliente.class)
+@NamedNativeQuery(name = "cliente.findByCPF", query = "SELECT * FROM user WHERE cpf = ?1", resultClass = Cliente.class)
 public class Cliente {
 
   @Id

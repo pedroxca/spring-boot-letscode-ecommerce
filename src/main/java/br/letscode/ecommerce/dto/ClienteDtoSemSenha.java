@@ -1,6 +1,7 @@
 package br.letscode.ecommerce.dto;
 
 import br.letscode.ecommerce.models.Cpf;
+import br.letscode.ecommerce.models.PerfilEnum;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,7 +14,7 @@ public class ClienteDtoSemSenha {
   private String email;
   private String sexo;
   private String cpf;
-  private String perfilEnum;
+  private PerfilEnum perfilEnum;
 
   public ClienteDtoSemSenha(String nome, String sobrenome, String email, String sexo, String cpf,
       String perfilEnum) {
@@ -22,7 +23,7 @@ public class ClienteDtoSemSenha {
     this.email = email;
     this.sexo = sexo;
     this.cpf = cpf;
-    this.perfilEnum = perfilEnum;
+    this.perfilEnum = PerfilEnum.valorDePerfilEnum(perfilEnum);
   }
 
   public void setCpf(String cpf) {

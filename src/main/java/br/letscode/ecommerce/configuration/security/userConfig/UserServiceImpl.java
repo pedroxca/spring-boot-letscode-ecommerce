@@ -13,7 +13,7 @@ import br.letscode.ecommerce.entity.Cliente;
 //de autenticacao e autorizacao. A interface soh tem um metodo (loadUserByUsername()), que nos iimplementamos para
 //"alimentar" informacoes sobre oo usuario para o Spring security API.
 @Service
-public class UserServiceImpl implements UserDetailsService {
+public class UserServiceImpl  implements UserDetailsService {
 
     @Autowired
     ClienteDao clienteDao;
