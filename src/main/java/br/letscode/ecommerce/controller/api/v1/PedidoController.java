@@ -1,5 +1,6 @@
 package br.letscode.ecommerce.controller.api.v1;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.letscode.ecommerce.dto.PedidoDto;
+import br.letscode.ecommerce.dto.PedidoDtoResource;
 import br.letscode.ecommerce.entity.Pedido;
 import br.letscode.ecommerce.models.Message;
 import br.letscode.ecommerce.service.PedidoService;
@@ -30,12 +32,12 @@ public class PedidoController {
   };
 
   @RequestMapping(method = RequestMethod.GET, path = "/{id}")
-  public ResponseEntity<Pedido> getProdutoById(@PathVariable Long id) {
+  public ResponseEntity<PedidoDtoResource> getProdutoById(@PathVariable Long id) {
     return ResponseEntity.status(HttpStatus.OK).body(pedidoService.getPedidoById(id));
   };
 
   @RequestMapping(method = RequestMethod.GET, path = "")
-  public ResponseEntity<List<Pedido>> getProdutos() {
+  public ResponseEntity<ArrayList<PedidoDtoResource>> getProdutos() {
 
     return ResponseEntity.status(HttpStatus.OK).body(pedidoService.getAllPedidos());
   };

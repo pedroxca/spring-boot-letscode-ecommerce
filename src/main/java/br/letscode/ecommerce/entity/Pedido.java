@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,17 +20,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
+import lombok.ToString;
 
 @NonNull
 @Getter
 @Setter
 @Entity
-@Table(name = "cliente")
+@Table(name = "pedido")
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Pedido {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.AUTO)
+
   private Long id;
 
   @Column(name = "cancelado")
@@ -42,12 +46,12 @@ public class Pedido {
   private LocalDateTime dataTerminado;
 
 
-  @OneToOne
+  @OneToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "client_id", referencedColumnName = "id")
   private Cliente cliente;
 
-  @JoinColumn(name = "produto_id", referencedColumnName = "pid")
-  @ManyToMany
+  @JoinColumn(name = "produto_id", referencedColumnName = "id")
+  @ManyToMany(fetch = FetchType.LAZY)
   private List<Produto> produtos;
 
   public Pedido(Boolean cancelado, Boolean terminado, Cliente cliente, List<Produto> produtos, LocalDateTime dataInicio) {
@@ -55,6 +59,16 @@ public class Pedido {
     this.terminado = terminado;
     this.cliente = cliente;
     this.produtos = produtos;
+    this.dataPedido = dataInicio;
+  }
+  
+  public Pedido(Boolean cancelado, Boolean terminado, Cliente cliente, List<Produto> produtos, LocalDateTime dataInicio, LocalDateTime dataFinal) {
+    this.cancelado = cancelado;
+    this.terminado = terminado;
+    this.cliente = cliente;
+    this.produtos = produtos;
+    this.dataPedido = dataInicio;
+    this.dataTerminado = dataFinal;
   }
   
 }
